@@ -55,7 +55,7 @@ const Services = () => {
                     </figure>
 
                     <div className="card-body lg:m-4">
-                        <h2 className="card-title text-black font-bold text-5xl">Exceptional Dental Care, on Your Terms</h2>
+                        <h2 className="card-title text-black font-bold text-4xl lg:text-5xl">Exceptional Dental Care, on Your Terms</h2>
 
                         <p className='text-gray-500 mt-2'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsumis that it has a more-or-less normal distribution of letters,as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page</p>
                 
