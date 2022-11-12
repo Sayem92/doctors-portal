@@ -8,7 +8,7 @@ const Banner = () => {
    
     return (
         <div 
-        className="hero  text-black rounded-lg " 
+        className="hero lg:my-24 text-black rounded-lg " 
         style={{ backgroundImage: `url(${bg})`}}
         >
 
