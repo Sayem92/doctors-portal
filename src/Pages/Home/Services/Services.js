@@ -4,6 +4,7 @@ import cavity from '../../../assets/images/cavity.png';
 import whitening from '../../../assets/images/whitening.png';
 import ServiceCard from './ServiceCard';
 import baby from '../../../assets/images/treatment.png'
+import ButtonPrimary from '../../../components/buttonPrimary/ButtonPrimary';
 
 const Services = () => {
 
@@ -59,8 +60,9 @@ const Services = () => {
                         <p className='text-gray-500 mt-2'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsumis that it has a more-or-less normal distribution of letters,as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page</p>
                 
                         <div className="card-actions justify-start">
-                            <button
-                                className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white">Get Started</button>
+                            
+
+                            <ButtonPrimary>Get Started</ButtonPrimary>
                         </div>
                     </div>
                 </div>
