@@ -13,14 +13,14 @@ const Login = () => {
 
     return (
         <div className='h-[800px] flex justify-center items-center text-black'>
-            <div className='w-96 p-7 shadow-xl'>
-                <h2 className='text-4xl text-center text-green-500'>Login</h2>
+            <div className='w-96 p-7 shadow-xl mx-2'>
+                <h2 className='text-4xl py-4 text-center text-green-500 font-bold'>Login</h2>
                 <form onSubmit={handleSubmit(handleLogin)}>
 
                     <div className="form-control w-full max-w-x">
                         <label className="label"> <span className="label-text text-black">Email</span>
                         </label>
-                        <input type="text"
+                        <input type="email"
                             {...register("email", {
                                 required: "Email Address is required"
                             })}
