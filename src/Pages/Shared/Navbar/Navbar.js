@@ -20,7 +20,10 @@ const Navbar = () => {
         <li><Link to='/contact'>Contact Us</Link></li>
         {
             user?.uid ?
+                <>
+                 <li><Link to='/dashboard'>Dashboard</Link></li>
                 <li><button onClick={handleLogout}>Sign Out</button></li>
+                </>
                 : <li><Link to='/login'>Login</Link></li>
         }
     </React.Fragment>
