@@ -1,15 +1,23 @@
 import React from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthProvider';
 
 const SignUp = () => {
-
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const { createUser } = useContext(AuthContext);
 
+    // user signup---------
     const handleSignUp = data => {
-        console.log(data);
+        createUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(err => console.log(err))
     }
-    console.log(errors);
+
 
 
     return (
@@ -41,10 +49,10 @@ const SignUp = () => {
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text text-black">Password</span>
                         </label>
-                        <input type="password" {...register('password',{
+                        <input type="password" {...register('password', {
                             required: 'Password is required',
-                            minLength: {value: 6, message: "Password is must be 6 characters or longer"},
-                            pattern: {value : /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: "Password must be strong"}
+                            minLength: { value: 6, message: "Password is must be 6 characters or longer" },
+                            pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: "Password must have uppercase, number and special characters" }
 
                         })} className="input input-bordered border-black w-full max-w-xs" placeholder="********" />
 
