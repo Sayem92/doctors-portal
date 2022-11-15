@@ -9,16 +9,16 @@ import { AuthContext } from '../Context/AuthProvider';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signIn } = useContext(AuthContext);
+    const { signIn, googleLogin } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
 
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
     const navigate = useNavigate();
 
+      // user login-------------------
     const handleLogin = data => {
         setLoginError('');
-        // user login-------
         signIn(data.email, data.password)
             .then(Result => {
                 const user = Result.user;
@@ -31,7 +31,21 @@ const Login = () => {
                 setLoginError(err.message)
             })
 
+    };
+
+
+
+    // google login----------------
+    const handleGoogleLogin = ()=> {
+        googleLogin()
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+            toast.success('Google Login Successfully!');
+        })
+        .catch(err => console.log(err))
     }
+
 
 
     return (
@@ -76,7 +90,8 @@ const Login = () => {
                 </form>
                 <p className='my-2 text-black'>New to Doctors Portal? <Link to='/signup' className='text-primary underline'>Create an account</Link></p>
                 <div className='divider text-black py-4 '>OR</div>
-                <button className='btn btn-outline w-full text-black hover:text-white border hover:bg-blue-500'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleLogin}
+                className='btn btn-outline w-full text-black hover:text-white border hover:bg-blue-500'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );

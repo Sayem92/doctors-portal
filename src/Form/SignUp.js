@@ -8,7 +8,7 @@ import { AuthContext } from '../Context/AuthProvider';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser, googleLogin } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('')
 
     // user signup---------
@@ -31,6 +31,19 @@ const SignUp = () => {
                 console.log(err);
                 setSignUpError(err.message);
             })
+    };
+
+
+
+    // google login----------------
+    const handleGoogleLogin = ()=> {
+        googleLogin()
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+            toast.success('Google Login Successfully!');
+        })
+        .catch(err => console.log(err))
     }
 
 
@@ -85,7 +98,9 @@ const SignUp = () => {
 
                 <p className='my-3 text-center text-black'>Already have an account? <Link to='/login' className='text-primary underline'>Please login</Link></p>
                 <div className='divider text-black py-4 '>OR</div>
-                <button className='btn btn-outline w-full text-black hover:text-white border hover:bg-blue-500'>CONTINUE WITH GOOGLE</button>
+
+                <button onClick={handleGoogleLogin}
+                className='btn btn-outline w-full text-black hover:text-white border hover:bg-blue-500'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );
