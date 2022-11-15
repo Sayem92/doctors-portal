@@ -8,9 +8,10 @@ import { AuthContext } from '../Context/AuthProvider';
 
 
 const Login = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signIn, googleLogin } = useContext(AuthContext);
+    const { register, formState: { errors }, handleSubmit, getValues } = useForm();
+    const { signIn, googleLogin, forgetPassword } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
+    const [email , setEmail] = useState(null);
 
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
@@ -47,6 +48,19 @@ const Login = () => {
     }
 
 
+    // password reset-----------------
+    const handlePasswordReset = ()=>{
+        if(email === null){
+            return  toast('Please enter your email');
+        }
+        forgetPassword(email)
+        .then(()=> {
+            toast.success('Please check your email for reset password'); 
+        })
+        .catch(err => console.log(err))
+    }
+
+
 
     return (
         <div className='h-[800px] flex justify-center items-center text-black'>
@@ -61,6 +75,10 @@ const Login = () => {
                             {...register("email", {
                                 required: "Email Address is required"
                             })}
+                            onBlur={() => {
+                                const emailValue = getValues('email'); 
+                                setEmail(emailValue);
+                              }}
                             className="input input-bordered border-black w-full max-w-xs" placeholder="Your email" />
                         {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
                     </div>
@@ -77,7 +95,9 @@ const Login = () => {
 
                         {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
 
-                        <label className="label"> <span className="label-text text-black">Forget Password?</span>
+                        <label className="label"> 
+                        <span onClick={handlePasswordReset}
+                        className="label-text text-black hover:underline">Forget Password?</span>
                         </label>
                     </div>
 
