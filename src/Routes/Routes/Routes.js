@@ -5,6 +5,7 @@ import Main from "../../layout/Main";
 import Appointment from "../../Pages/Appointment/Appointment/Appointment";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import Home from "../../Pages/Home/Home/Home";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -31,6 +32,6 @@ export const routes = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
     }
 ])
