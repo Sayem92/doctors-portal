@@ -44,7 +44,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
 
                     <form onSubmit={handleBooking}
                         className='grid grid-cols-1 gap-3 mt-10 '>
-                        <input type="text" disabled value={date} className="input w-full input-sm input-bordered" />
+                        <input type="text" readOnly value={date} className="input w-full input-sm input-bordered text-black font-semibold border-gray-400" />
 
                         <select name='slot' className="select select-sm select-bordered w-full text-black border-gray-400 ">
                             {

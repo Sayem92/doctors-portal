@@ -2,11 +2,11 @@ import React from 'react';
 
 const Loading = () => {
     return (
-        <div className='flex justify-center items-center mt-32'>
-        <div className='flex justify-center items-center'>
-            <h1 className='text-4xl text-black'>L</h1>
-            <p className='h-5 w-5 rounded animate-spin ring ring-green-500 mx-2'></p>
-            <h1  className='text-4xl text-black'>ading</h1>
+        <div className='lg:my-64 my-32'>
+        <div className='flex justify-center items-center text-yellow-400'>
+            <p className='text-7xl font-thin'>L</p>
+            <div className='w-10 h-10 border-8 border-dashed rounded-full animate-spin mt-5 border-green-500'></div>
+            <p className='text-7xl font-thin'>ading....</p>
         </div>
         </div>
     );
