@@ -5,7 +5,7 @@ const Review = ({ reviewdata }) => {
 
     return (
 
-        <div className='border rounded-lg text-black shadow-xl'>
+        <div className='border rounded-lg  shadow-xl'>
 
             <div className="p-4 space-y-2 text-sm text-gray-700">
                 <p>{review}</p>

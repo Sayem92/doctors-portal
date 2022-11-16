@@ -8,7 +8,7 @@ const Contact = () => {
         const email = form.email.value;
         const subject = form.subject.value;
         const message = form.message.value;
-        console.log(email,subject, message);
+        console.log(email, subject, message);
 
     }
 
@@ -16,7 +16,7 @@ const Contact = () => {
         <section style={{
             backgroundImage: `url(${appointment})`
         }}
-        className='py-16 mb-4'>
+            className='py-16 mb-4'>
             <div className='text-center'>
                 <h4 className='text-lg text-green-500 font-bold'>Contact Us</h4>
                 <h1 className="mt-1 mx-1 text-white text-2xl md:text-3xl font-normal">Stay connected with us</h1>
@@ -29,12 +29,12 @@ const Contact = () => {
 
                 <input name='subject' type="text" placeholder="Subject" className="input w-full input-sm" />
 
-                <textarea name='message' className="textarea text-black mb-5" placeholder="Your message">
+                <textarea name='message' className="textarea  mb-5" placeholder="Your message">
                 </textarea>
-                
+
                 <input type='submit'
                     className=" w-24 mx-auto btn btn-primary bg-gradient-to-r from-primary to-secondary text-white" placeholder='Submit' />
-                
+
             </form>
         </section>
     );

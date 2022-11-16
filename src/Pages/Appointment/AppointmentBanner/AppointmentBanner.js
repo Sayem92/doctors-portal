@@ -11,7 +11,7 @@ const AppointmentBanner = ({ selectedDate, setSelectedDate }) => {
     return (
         <header className=' my-3'>
             <div style={{ backgroundImage: `url(${bg})` }}
-                className="lg:py-32 hero text-black">
+                className="lg:py-32 hero">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img src={chair} className="lg:w-1/2 rounded-lg shadow-xl" alt='dentist chair' />
 

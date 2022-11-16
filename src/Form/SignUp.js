@@ -23,13 +23,13 @@ const SignUp = () => {
                 toast.success('Successfully created!');
                 //user update---------
                 const userInfo = {
-                    displayName : data.name
+                    displayName: data.name
                 }
                 updateUser(userInfo)
-                .then(()=>{
-                    navigate('/')
-                })
-                .catch(err => console.log(err))
+                    .then(() => {
+                        navigate('/')
+                    })
+                    .catch(err => console.log(err))
             })
             .catch(err => {
                 console.log(err);
@@ -40,53 +40,53 @@ const SignUp = () => {
 
 
     // google login----------------
-    const handleGoogleLogin = ()=> {
+    const handleGoogleLogin = () => {
         googleLogin()
-        .then(result =>{
-            const user = result.user;
-            console.log(user);
-            toast.success('Google Login Successfully!');
-        })
-        .catch(err => console.log(err))
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('Google Login Successfully!');
+            })
+            .catch(err => console.log(err))
     }
 
 
 
     return (
-        <div className='h-[800px] flex justify-center items-center text-black'>
+        <div className='h-[800px] flex justify-center items-center '>
             <div className='w-96 p-7 shadow-xl mx-2'>
                 <h2 className='text-4xl py-4 font-bold text-center text-green-500'>Sign Up</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
 
                     <div className="form-control w-full max-w-x">
-                        <label className="label"> <span className="label-text text-black">Name</span>
+                        <label className="label"> <span className="label-text ">Name</span>
                         </label>
                         <input type="text" {...register('name', {
                             required: "Please enter your name"
-                        })} className="input input-bordered border-black w-full max-w-xs" placeholder="Your name" />
+                        })} className="input input-bordered  w-full max-w-xs" placeholder="Your name" />
 
                         {errors.name && <p className='text-red-600'>{errors.name.message}</p>}
                     </div>
 
                     <div className="form-control w-full max-w-x">
-                        <label className="label"> <span className="label-text text-black">Email</span>
+                        <label className="label"> <span className="label-text ">Email</span>
                         </label>
                         <input type="email" {...register('email', {
                             required: 'Email is required'
-                        })} className="input input-bordered border-black w-full max-w-xs" placeholder="Your email" />
+                        })} className="input input-bordered  w-full max-w-xs" placeholder="Your email" />
 
                         {errors.email && <p className='text-red-600'>{errors.email.message}</p>}
                     </div>
 
                     <div className="form-control w-full max-w-xs">
-                        <label className="label"> <span className="label-text text-black">Password</span>
+                        <label className="label"> <span className="label-text ">Password</span>
                         </label>
                         <input type="password" {...register('password', {
                             required: 'Password is required',
                             minLength: { value: 6, message: "Password is must be 6 characters or longer" },
                             pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: "Password must have uppercase, number and special characters" }
 
-                        })} className="input input-bordered border-black w-full max-w-xs" placeholder="********" />
+                        })} className="input input-bordered  w-full max-w-xs" placeholder="********" />
 
                         {errors.password && <p className='text-red-600'>{errors.password.message}</p>}
                     </div>
@@ -100,11 +100,11 @@ const SignUp = () => {
                     </div>
                 </form>
 
-                <p className='my-3 text-center text-black'>Already have an account? <Link to='/login' className='text-primary underline'>Please login</Link></p>
-                <div className='divider text-black py-4 '>OR</div>
+                <p className='my-3 text-center '>Already have an account? <Link to='/login' className='text-primary underline'>Please login</Link></p>
+                <div className='divider  py-4 '>OR</div>
 
                 <button onClick={handleGoogleLogin}
-                className='btn btn-outline w-full text-black hover:text-white border hover:bg-blue-500'>CONTINUE WITH GOOGLE</button>
+                    className='btn btn-outline w-full  hover:text-white hover:border-none hover:bg-blue-500'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );
