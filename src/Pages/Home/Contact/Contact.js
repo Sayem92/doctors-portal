@@ -33,7 +33,7 @@ const Contact = () => {
                 </textarea>
 
                 <input type='submit'
-                    className=" w-24 mx-auto btn btn-primary bg-gradient-to-r from-primary to-secondary text-white" placeholder='Submit' />
+                    className=" w-24 mx-auto btn btn-primary bg-gradient-to-r from-primary to-secondary text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 " placeholder='Submit' />
 
             </form>
         </section>
