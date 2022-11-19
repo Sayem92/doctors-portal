@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 
 const ManageDoctors = () => {
@@ -11,13 +12,9 @@ const ManageDoctors = () => {
         setDeletingDoctor(null)
     };
 
-    const handleDeletingDoctor = doctor => {
-        console.log(doctor);
-    };
 
 
-
-    const { data: doctors = [] } = useQuery({
+    const { data: doctors = [], refetch } = useQuery({
         queryKey: ['doctors'],
         queryFn: async () => {
             try {
@@ -39,10 +36,28 @@ const ManageDoctors = () => {
 
 
 
+    const handleDeletingDoctor = doctor => {
+        fetch(`http://localhost:5000/doctors/${doctor?._id}`, {
+            method: "DELETE",
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast.success(`Doctor ${doctor.name} deleted successfully`)
+                    refetch();
+                }
+
+            })
+    };
+
+
 
     return (
         <div>
-            <h2 className="text-3xl font-semibold ml-8 mb-4">Manage Doctors{doctors?.length}</h2>
+            <h2 className="text-3xl font-semibold ml-8 mb-4">Manage Doctors</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
 
@@ -58,7 +73,7 @@ const ManageDoctors = () => {
                     </thead>
                     <tbody>
                         {
-                            doctors.map((doctor, i) => <tr key={doctor._id}>
+                            doctors?.map((doctor, i) => <tr key={doctor._id}>
                                 <th>{i + 1}</th>
                                 <td>
                                     <div className="avatar">
@@ -82,8 +97,8 @@ const ManageDoctors = () => {
                 </table>
             </div>
 
-             {/* open delete modal  */}
-             
+            {/* open delete modal  */}
+
             {
                 deletingDoctor && <ConfirmationModal
                     title={`Are you sure you want to delete?`}

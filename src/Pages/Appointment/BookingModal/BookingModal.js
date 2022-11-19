@@ -6,7 +6,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 
 const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
     // treatment is just another name of appointment options with name, slots, _id
-    const { name, slots } = treatment;
+    const { name, slots, price } = treatment;
     const date = format(selectedDate, "PP");
     const { user } = useContext(AuthContext);
 
@@ -25,11 +25,12 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
             patient,
             slot,
             email,
-            phone
+            phone,
+            price
         }
-        
 
-       // post treatment to server----------
+
+        // post treatment to server----------
         fetch('http://localhost:5000/bookings', {
             method: "POST",
             headers: {
@@ -45,7 +46,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
                     setTreatment(null);
                     refetch();// auto update--------
                 }
-                else{
+                else {
                     toast.error(data.message)
                 }
             })

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const MyAppointment = () => {
@@ -12,9 +13,9 @@ const MyAppointment = () => {
 
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(url,{
-                headers:{
-                    authorization : `bearer ${localStorage.getItem('accessToken')}`
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
             })
             const data = await res.json();
@@ -37,6 +38,7 @@ const MyAppointment = () => {
                             <th>Treatment</th>
                             <th>Date</th>
                             <th>Time</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +52,20 @@ const MyAppointment = () => {
                                     <td>{booking.treatment}</td>
                                     <td>{booking.appointmentDate}</td>
                                     <td>{booking.slot}</td>
+                                    <td>
+                                        {
+                                            booking.price && !booking.paid && <Link to={`/dashboard/payment/${booking._id}`}>
+                                                <button
+                                                    className='btn btn-sm btn-primary'
+                                                >Pay</button>
+                                            </Link>
+                                        }
+                                        {
+                                            booking.price && booking.paid && <button
+                                                className='btn btn-sm btn-success'
+                                            >Paid</button>
+                                        }
+                                    </td>
 
                                 </tr>)
                         }
