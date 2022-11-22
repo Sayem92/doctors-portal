@@ -16,7 +16,7 @@ const CheckOutForm = ({ booking }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://doctors-portal-server-sayem92.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -79,19 +79,19 @@ const CheckOutForm = ({ booking }) => {
             return;
         }
 
-        if(paymentIntent.status === "succeeded"){
-           
+        if (paymentIntent.status === "succeeded") {
+
             console.log("cardInfo", card);
-            
+
             const payment = {
                 price,
                 transactionId: paymentIntent.id,
-                email, 
+                email,
                 bookingId: _id
             }
 
             // store payment info in the database
-            fetch(`http://localhost:5000/payments`,{
+            fetch(`https://doctors-portal-server-sayem92.vercel.app/payments`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -99,15 +99,15 @@ const CheckOutForm = ({ booking }) => {
                 },
                 body: JSON.stringify(payment),
             })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if(data.insertedId){
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.insertedId) {
 
-                    setSuccess('Congrats! Your payment completed.')
-                    setTransactionId(paymentIntent.id);
-                }
-            })
+                        setSuccess('Congrats! Your payment completed.')
+                        setTransactionId(paymentIntent.id);
+                    }
+                })
 
         }
         setProcessing(false);
@@ -136,7 +136,7 @@ const CheckOutForm = ({ booking }) => {
                     }}
                 />
                 <button
-                //  processing takle disabled
+                    //  processing takle disabled
                     className='btn btn-sm btn-primary mt-6'
                     type="submit" disabled={!stripe || !clientSecret || processing}>
                     Pay
